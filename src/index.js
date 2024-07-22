@@ -1,11 +1,11 @@
 import './pages/index.css'; 
 
-import { openModal, openImagePopup, closeModal, eddElementCloseModal, closeModalEsc, closeModalOverlay } from './components/modal.js';
-import {createCard, renderInitialCards, onDeleteCard, onLikeCard} from './components/card.js';
+import { openModal, closeModal, eddElementCloseModal} from './components/modal.js';
+import {createCard, onDeleteCard, onLikeCard} from './components/card.js';
+import {initialCards} from './components/cards.js';
 
 const popupTypeEdit = document.querySelector('.popup_type_edit');
 const popupNewCard = document.querySelector('.popup_type_new-card');
-const popupImage = document.querySelector('.popup_type_image');
 const editButtonElement = document.querySelector('.profile__edit-button');
 const addButtonElement = document.querySelector('.profile__add-button');
 const formEditProfile = document.forms['edit-profile'];
@@ -20,17 +20,27 @@ const placesList = content.querySelector('.places__list');
 const nameInputNewCard = document.querySelector('.popup__input_type_card-name'); 
 const urlInput = document.querySelector('.popup__input_type_url');
 
-
+const popupImage = document.querySelector('.popup_type_image');
+const picturePopupImage = popupImage.querySelector('.popup__image');
+const signaturePopupImage = popupImage.querySelector('.popup__caption');
 
 eddElementCloseModal (popupTypeEdit);
 eddElementCloseModal (popupNewCard);
 eddElementCloseModal (popupImage);
 
+//---------------------------------Функция выведения массива карточек-------------------------------//
+
+function renderInitialCards() {
+  initialCards.forEach(function (cardData) {
+      placesList.append(createCard(cardData, onDeleteCard, onLikeCard, openImagePopup))
+  });
+}
+
 renderInitialCards();
 
-//-------------------------------------Функция выведения текста плейсхолдера формы------------------------------------------------//
+//-------------------------------------Функция выведения текста формы из информации профиля------------------------------------------------//
 
-function FormTextPlaceholder () {
+function formTextEditPrifile () {
   const profileTitle = document.querySelector('.profile__title');
   const profileDescription = document.querySelector('.profile__description');
   nameInput.value = profileTitle.textContent;
@@ -43,7 +53,7 @@ function FormTextPlaceholder () {
 editButtonElement.addEventListener('click', function() {
   openModal(popupTypeEdit);  
 
-  FormTextPlaceholder();
+  formTextEditPrifile();
 
   
 });
@@ -71,6 +81,9 @@ export function submitPopupEditProfile(evt) {
 }
 
 
+// --------------------------------- Функция добавления новой карточки ------------------------------//
+
+
 function addCardPopups (evt) {
   evt.preventDefault(); 
 
@@ -90,6 +103,17 @@ function addCardPopups (evt) {
     closeModal();
 }
 
+
+//----------------------------------Функция открытия попапа с картинкой ------------------------------//
+
+function openImagePopup(data) {
+  
+  picturePopupImage.src = data.link;
+  picturePopupImage.alt = data.name;
+  signaturePopupImage.textContent = data.name;
+
+  openModal(popupImage);  
+};
 
 
 formEditProfile.addEventListener('submit', submitPopupEditProfile); 

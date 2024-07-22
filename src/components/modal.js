@@ -31,22 +31,3 @@ export function closeModalOverlay (evt) {
     }
 }
 
-
-
-
-export function DeletePlaceholder () {
-    if (closeModal) {
-
-    }
-}
-
-//----------------------------------Функция открытия попапа с картинкой ------------------------------//
-
-export function openImagePopup(imageLink) {
-    const popupImage = document.querySelector('.popup_type_image');
-    openModal(popupImage);  
-  
-    popupImage.querySelector('.popup__image').src = imageLink.querySelector('.card__image').src;
-    popupImage.querySelector('.popup__image').alt = imageLink.querySelector('.card__image').alt;
-    popupImage.querySelector('.popup__caption').textContent = imageLink.querySelector('.card__image').alt;
-  };
