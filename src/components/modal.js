@@ -3,7 +3,7 @@ export function openModal (popup) {
     document.addEventListener('keydown', closeModalEsc);
 }
 
-export function eddElementCloseModal (popup) {
+export function addElementCloseModal (popup) {
     const closeButtonPopup = popup.querySelector('.popup__close');
     closeButtonPopup.addEventListener('click', closeModal);
  

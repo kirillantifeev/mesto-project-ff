@@ -16,9 +16,8 @@ const config = {
         body: JSON.stringify({
             avatar: newAvatar
         })
-
         })
-        console.log(newAvatar);
+        .then(responseProcessing)
   }
 
 
@@ -28,9 +27,9 @@ export const deleteCard = (idCard) => {
         method: 'DELETE',
         headers: {
             authorization: config.headers.authorization
-        }
-        
+        }     
 })
+.then(responseProcessing)
 }
 
 
@@ -40,9 +39,8 @@ export const likeCard = (idCard) => {
         headers: {
             authorization: config.headers.authorization
         }
-
 })
-
+.then(responseProcessing)
 }
 
 export const disLikeCard = (idCard) => {
@@ -52,6 +50,7 @@ export const disLikeCard = (idCard) => {
             authorization: config.headers.authorization
         }
 })
+.then(responseProcessing)
 }
 
 export const numbersLike = () => {
@@ -61,22 +60,19 @@ export const numbersLike = () => {
             authorization: config.headers.authorization
         }
     })
+    .then(responseProcessing)
 }
 
 
 
 
-  export const getInitialCards = () => {
+    export const getInitialCards = () => {
     return fetch(`${config.baseUrl}/cards`, {
     headers: {
         authorization: config.headers.authorization
     }
-
-
     })
     .then(responseProcessing)
-    
-
     };
 
     export const getDataProfile = () => {
@@ -84,22 +80,18 @@ export const numbersLike = () => {
             headers: {
                 authorization: config.headers.authorization
             }
-            
-            
-        
             })
             .then(responseProcessing)
-            
-
     }
 
+
     const responseProcessing = res => {
-if (res.ok) {
-return res.json();
-}
-else {
-    console.log(`Ошибка: ${res.status}`)
-}
+    if (res.ok) {
+    return res.json();
+    }
+    else {
+    return Promise.reject(`Ошибка: ${res.status}`);
+    }
     }
 
 
@@ -115,6 +107,7 @@ else {
                 about: about
             })
         })   
+        .then(responseProcessing)
     }
 
     export const addNewCard = (name, link) => {
@@ -128,8 +121,7 @@ else {
                 name: name,
                 link: link
               })
-    
         })
-
+        .then(responseProcessing)
     }
 
