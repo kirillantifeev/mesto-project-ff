@@ -4,6 +4,8 @@
 
 https://kirillantifeev.github.io/mesto-project-ff/
 
+[Макет](<https://www.figma.com/file/vIywAvqfkOIRWGOkfOnReY/React-Fullstack_-Проектные-задачи-(3-месяца)_external_link?type=design&node-id=0-1&mode=design](https://www.figma.com/design/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=0-1&p=f&t=Z44R4keaDrvgneyK-0)>)
+
 ## Запуск проекта
 
 Сборка проекта: 
